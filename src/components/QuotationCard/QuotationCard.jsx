@@ -15,6 +15,7 @@ const QuotationCard = ({client_name, expiry_date}) => {
         <div className="quotation-card-container">
             <p>Client Name: {client_name}</p>
             <p>Expired: {expired ? "Expired" : "Valid"}</p>
+            <button>View Quotation</button>
         </div>
     );
 };
