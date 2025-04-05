@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import * as Dialog from '@radix-ui/react-dialog';
+import PartForm from '../../components/PartForm/PartForm.jsx';
 
 const QuotationView = () => {
     const { quoteId } = useParams();
@@ -48,9 +50,7 @@ const QuotationView = () => {
                             const unitPrice = priceObj?.unit_price || 0;
                             return (
                                 <td key={qty}>
-                                    {unitPrice > 0
-                                        ? `₹ ${unitPrice}`
-                                        : '-'}
+                                    {unitPrice > 0 ? `₹ ${unitPrice}` : '-'}
                                 </td>
                             );
                         })}
@@ -58,6 +58,29 @@ const QuotationView = () => {
                 ))}
                 </tbody>
             </table>
+
+            <div>
+                <Dialog.Root>
+                    <Dialog.Trigger asChild>
+                        <button>
+                            Add Part
+                        </button>
+                    </Dialog.Trigger>
+
+                    <Dialog.Portal>
+                        <Dialog.Overlay/>
+                        <Dialog.Content aria-describedby={undefined}>
+                            <Dialog.Title>Add Part</Dialog.Title>
+                            <PartForm />
+                            <Dialog.Close asChild>
+                                <button>
+                                    ×
+                                </button>
+                            </Dialog.Close>
+                        </Dialog.Content>
+                    </Dialog.Portal>
+                </Dialog.Root>
+            </div>
         </div>
     );
 };
