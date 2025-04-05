@@ -1,8 +1,15 @@
 import React, {useState, useEffect} from 'react';
+import {useNavigate} from 'react-router-dom';
 import './AllQuotations.css'
 import QuotationCard from '../../components/QuotationCard/QuotationCard.jsx'
 
 const AllQuotations = () => {
+    const navigate = useNavigate();
+
+    const navigateToAddQuote = () => {
+        navigate('/addquote')
+    }
+
     const [allQuotations, setAllQuotations] = useState([])
 
     const url = "http://localhost:3000/quotations"
@@ -10,7 +17,6 @@ const AllQuotations = () => {
     const fetchAllQuotations = async () => {
         const res = await fetch(url)
         const data = await res.json()
-        console.log(data)
         setAllQuotations(data)
     }
 
@@ -28,7 +34,7 @@ const AllQuotations = () => {
                     )
                 })}
             </div>
-            <button>Add Quote</button>
+            <button onClick={navigateToAddQuote}>Add Quote</button>
         </div>
     );
 };
