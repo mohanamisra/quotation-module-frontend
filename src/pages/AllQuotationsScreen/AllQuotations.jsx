@@ -30,7 +30,7 @@ const AllQuotations = () => {
             <div className="all-quotations-container">
                 {allQuotations.map((quotation, index) => {
                     return (
-                        <QuotationCard client_name={quotation.client_name} expiry_date={quotation.expiry_date} key={index} />
+                        <QuotationCard quotation={quotation} key={index} />
                     )
                 })}
             </div>
