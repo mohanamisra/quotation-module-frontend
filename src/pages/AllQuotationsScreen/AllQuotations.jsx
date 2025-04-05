@@ -19,7 +19,7 @@ const AllQuotations = () => {
     }, [])
 
     return (
-        <div className="allQuotations-page">
+        <div className="all-quotations-page">
             <h1>All Quotes</h1>
             <div className="all-quotations-container">
                 {allQuotations.map((quotation, index) => {
