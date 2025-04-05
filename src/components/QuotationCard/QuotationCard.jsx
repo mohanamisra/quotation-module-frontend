@@ -12,7 +12,7 @@ const QuotationCard = ({client_name, expiry_date}) => {
     }, [expiry_date]);
 
     return (
-        <div className="QuotationCard-container">
+        <div className="quotation-card-container">
             <p>Client Name: {client_name}</p>
             <p>Expired: {expired ? "Expired" : "Valid"}</p>
         </div>

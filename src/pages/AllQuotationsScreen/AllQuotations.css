@@ -1,0 +1,8 @@
+.all-quotations-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.quotation-card-container {
+    border: 2px solid black;
+}
