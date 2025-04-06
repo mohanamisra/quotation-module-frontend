@@ -28,7 +28,7 @@ const PartForm = ({quote, onQuoteUpdate}) => {
     }
 
     const updateQuote = async (newQuoteObj) => {
-        const url = `http://localhost:3000/quotations/${quote._id}`;
+        const url = `https://quotation-module-backend.onrender.com/quotations/${quote._id}`;
         await fetch(url, {
             method: 'PATCH',
             headers: {'Content-Type': 'application/json'},

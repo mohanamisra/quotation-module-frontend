@@ -16,7 +16,7 @@ const QuotationView = () => {
 
     const refreshQuote = async () => {
         if (!exchangeRate) {
-            const res = await fetch('http://localhost:3000/currency/rates');
+            const res = await fetch('https://quotation-module-backend.onrender.com/currency/rates');
             const data = await res.json();
             setExchangeRate(data.rate);
         }
@@ -28,14 +28,14 @@ const QuotationView = () => {
 
     useEffect(() => {
         const fetchQuote = async () => {
-            const res = await fetch(`http://localhost:3000/quotations/${quoteId}`);
+            const res = await fetch(`https://quotation-module-backend.onrender.com/quotations/${quoteId}`);
             const data = await res.json();
             setQuote(data);
         };
         fetchQuote();
 
         const fetchExchangeRate = async () => {
-            const res = await fetch('http://localhost:3000/currency/rates');
+            const res = await fetch('https://quotation-module-backend.onrender.com/currency/rates');
             const data = await res.json();
             setExchangeRate(data.rate);
         };

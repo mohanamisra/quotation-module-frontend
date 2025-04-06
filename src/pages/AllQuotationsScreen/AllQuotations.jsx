@@ -12,7 +12,7 @@ const AllQuotations = () => {
 
     const [allQuotations, setAllQuotations] = useState([])
 
-    const url = "http://localhost:3000/quotations"
+    const url = "https://quotation-module-backend.onrender.com/quotations"
 
     const fetchAllQuotations = async () => {
         const res = await fetch(url)

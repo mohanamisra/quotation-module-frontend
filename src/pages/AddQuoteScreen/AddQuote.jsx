@@ -17,7 +17,7 @@ const AddQuote = () => {
             currency: currency.toLowerCase(),
             parts:[]
         }
-        await fetch('http://localhost:3000/quotations', {
+        await fetch('https://quotation-module-backend.onrender.com/quotations', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(data),
