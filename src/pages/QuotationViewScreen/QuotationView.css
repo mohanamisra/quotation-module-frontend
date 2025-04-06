@@ -124,6 +124,16 @@ form table td:first-child {
     font-weight: 500;
 }
 
+.bottom-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.pdf-button:hover {
+    background: #c1121f;
+    border-color: #c1121f;
+}
+
 /*RADIX UI DIALOG BOX STYLING*/
 
 .DialogOverlay {

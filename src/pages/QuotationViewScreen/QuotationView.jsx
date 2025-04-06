@@ -64,28 +64,30 @@ const QuotationView = () => {
                 ))}
                 </tbody>
             </table>
+            <div className="bottom-buttons">
+                <div className="dialog-box">
+                    <Dialog.Root className="DialogRoot">
+                        <Dialog.Trigger asChild>
+                            <button>
+                                Add Part
+                            </button>
+                        </Dialog.Trigger>
 
-            <div className = "dialog-box">
-                <Dialog.Root className="DialogRoot">
-                    <Dialog.Trigger asChild>
-                        <button>
-                            Add Part
-                        </button>
-                    </Dialog.Trigger>
-
-                    <Dialog.Portal>
-                        <Dialog.Overlay className="DialogOverlay" />
-                        <Dialog.Content className="DialogContent" aria-describedby={undefined}>
-                            <Dialog.Title>Add Part</Dialog.Title>
-                            <PartForm quote={quote} onQuoteUpdate={refreshQuote} />
-                            <Dialog.Close asChild>
-                                <button aria-label="Close">
-                                    ×
-                                </button>
-                            </Dialog.Close>
-                        </Dialog.Content>
-                    </Dialog.Portal>
-                </Dialog.Root>
+                        <Dialog.Portal>
+                            <Dialog.Overlay className="DialogOverlay"/>
+                            <Dialog.Content className="DialogContent" aria-describedby={undefined}>
+                                <Dialog.Title>Add Part</Dialog.Title>
+                                <PartForm quote={quote} onQuoteUpdate={refreshQuote}/>
+                                <Dialog.Close asChild>
+                                    <button aria-label="Close">
+                                        ×
+                                    </button>
+                                </Dialog.Close>
+                            </Dialog.Content>
+                        </Dialog.Portal>
+                    </Dialog.Root>
+                </div>
+                <button className="pdf-button">Download PDF</button>
             </div>
         </div>
     );
