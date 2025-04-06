@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import * as Dialog from '@radix-ui/react-dialog';
 import PartForm from '../../components/PartForm/PartForm.jsx';
 import './QuotationView.css'
+import html2pdf from "html2pdf.js";
 
 const QuotationView = () => {
     const { quoteId } = useParams();
@@ -28,8 +29,16 @@ const QuotationView = () => {
         new Set(quote.parts.flatMap(part => part.prices.map(p => p.qty)))
     ).sort((a, b) => a - b);
 
+    const handleDownloadPDF = () => {
+        const quotation = document.getElementById("quotation")
+        html2pdf(quotation, {
+            margin: 10,
+            filename: 'quotation.pdf',
+        });
+    }
+
     return (
-        <div className="quotation-view-container">
+        <div className="quotation-view-container" id = "quotation">
             <h1>Quotation Details</h1>
             <p><strong>Client Name:</strong> {quote.client_name}</p>
             <p><strong>Expiry Date:</strong> {quote.expiry_date}</p>
@@ -68,7 +77,7 @@ const QuotationView = () => {
                 <div className="dialog-box">
                     <Dialog.Root className="DialogRoot">
                         <Dialog.Trigger asChild>
-                            <button>
+                            <button data-html2canvas-ignore>
                                 Add Part
                             </button>
                         </Dialog.Trigger>
@@ -87,7 +96,7 @@ const QuotationView = () => {
                         </Dialog.Portal>
                     </Dialog.Root>
                 </div>
-                <button className="pdf-button">Download PDF</button>
+                <button className="pdf-button" data-html2canvas-ignore onClick={handleDownloadPDF}>Download PDF</button>
             </div>
         </div>
     );
