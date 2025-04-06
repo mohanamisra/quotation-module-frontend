@@ -30,12 +30,12 @@ const QuotationView = () => {
 
     return (
         <div className="quotation-view-container">
-            <h1>View Quote</h1>
+            <h1>Quotation Details</h1>
             <p><strong>Client Name:</strong> {quote.client_name}</p>
             <p><strong>Expiry Date:</strong> {quote.expiry_date}</p>
             <p><strong>Currency:</strong> {quote.currency.toUpperCase()}</p>
 
-            <h3>Parts</h3>
+            <h2>Part Details (as per RFQ)</h2>
             <table border="1" cellPadding="10">
                 <thead>
                 <tr>
