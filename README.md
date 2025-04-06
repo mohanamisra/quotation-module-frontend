@@ -14,4 +14,4 @@
 - [X] Connect DB to add new parts in quotations
 - [X] Implement templating engine to download quotation
 - [X] Implement 3rd party api connection to convert currencies
-- [ ] Deploy frontend
+- [X] Deploy frontend
