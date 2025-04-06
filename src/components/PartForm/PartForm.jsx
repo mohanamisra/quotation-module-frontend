@@ -1,8 +1,7 @@
 import React, {useEffect, useState} from 'react';
 
-const PartForm = ({quote}) => {
+const PartForm = ({quote, onQuoteUpdate}) => {
     const [allQuantities, setAllQuantities] = useState([]);
-    const [quoteVersion, setQuoteVersion] = useState(0);
 
     const [inputPartName, setInputPartName] = useState('');
     const [inputMoq, setInputMoq] = useState('');
@@ -36,8 +35,9 @@ const PartForm = ({quote}) => {
             body: JSON.stringify(newQuoteObj),
         });
         alert("Part Added");
-        const newQuoteVersion = quoteVersion + 1;
-        setQuoteVersion(newQuoteVersion);
+        if (onQuoteUpdate) {
+            onQuoteUpdate();
+        }
         setInputPartName('');
         setInputMoq('');
         setAllQuantities([]);
@@ -59,15 +59,7 @@ const PartForm = ({quote}) => {
         }
         await updateQuote(updatedQuote);
     }
-
-    useEffect(() => {
-        const fetchQuote = async () => {
-            const res = await fetch(`http://localhost:3000/quotations/${quote._id}`);
-            quote = await res.json();
-        };
-        fetchQuote();
-    }, [quoteVersion])
-
+    
     return (
         <form className="space-y-4">
             <div>

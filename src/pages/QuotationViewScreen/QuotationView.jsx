@@ -6,6 +6,11 @@ import PartForm from '../../components/PartForm/PartForm.jsx';
 const QuotationView = () => {
     const { quoteId } = useParams();
     const [quote, setQuote] = useState(null);
+    const [refreshTrigger, setRefreshTrigger] = useState(0);
+
+    const refreshQuote = () => {
+        setRefreshTrigger(prev => prev + 1);
+    };
 
     useEffect(() => {
         const fetchQuote = async () => {
@@ -14,7 +19,7 @@ const QuotationView = () => {
             setQuote(data);
         };
         fetchQuote();
-    }, [quoteId]);
+    }, [quoteId, refreshTrigger]); // Add refreshTrigger to dependency array
 
     if (!quote) return <p>Loading...</p>;
 
@@ -71,7 +76,7 @@ const QuotationView = () => {
                         <Dialog.Overlay/>
                         <Dialog.Content aria-describedby={undefined}>
                             <Dialog.Title>Add Part</Dialog.Title>
-                            <PartForm quote={quote}/>
+                            <PartForm quote={quote} onQuoteUpdate={refreshQuote} />
                             <Dialog.Close asChild>
                                 <button>
                                     ×
