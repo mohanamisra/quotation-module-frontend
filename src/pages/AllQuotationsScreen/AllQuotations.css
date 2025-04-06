@@ -1,23 +1,29 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f5f7fa;
     margin: 0;
     padding: 0;
-    color: #333;
+    color: #0A1128;
+    min-height: 100vh;
+    background-color: #f9fafb;
 }
+
 
 .all-quotations-page {
     padding: 3rem 4rem;
     max-width: 1200px;
     margin: 0 auto;
+    background-image: radial-gradient(circle, rgba(0,0,0,0.05) 3px, transparent 1px);
+    background-size: 40px 40px;
 }
 
 .all-quotations-page h1 {
-    font-size: 2.5rem;
+    font-size: 3rem;
     margin-bottom: 2rem;
-    color: #1f2937;
-    font-weight: 600;
+    color: #000;
+    font-weight: bolder;
     text-align: center;
+    border-bottom: 2px solid #1282A2;
+    padding-bottom: 1rem;
 }
 
 .all-quotations-container {
@@ -28,10 +34,10 @@ body {
 }
 
 .quotation-card-container {
-    background-color: #ffffff;
+    background-color: #0A1128;
     padding: 1.5rem;
-    border-radius: 12px;
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.07);
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     display: flex;
     flex-direction: column;
@@ -39,21 +45,21 @@ body {
 }
 
 .quotation-card-container:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
 .quotation-card-container p {
     font-size: 1rem;
     margin: 0.5rem 0;
+    color: #FEFCFB;
 }
 
 .quotation-card-container button {
-    background-color: #2563eb;
+    background-color: #1282A2;
     color: white;
     padding: 0.6rem 1.2rem;
     border: none;
-    border-radius: 8px;
     font-size: 0.95rem;
     cursor: pointer;
     margin-top: 1rem;
@@ -62,22 +68,24 @@ body {
 }
 
 .quotation-card-container button:hover {
-    background-color: #1e40af;
+    background-color: #034078;
 }
 
 .all-quotations-page > button {
-    background-color: #10b981;
-    color: white;
+    background-color: white;
+    color: #0A1128;
+    border: 3px solid #0A1128;
     padding: 0.8rem 1.6rem;
     font-size: 1rem;
-    border: none;
-    border-radius: 10px;
     cursor: pointer;
     transition: background-color 0.3s ease;
     display: block;
     margin: 0 auto;
+    text-transform: uppercase;
+    font-weight: 600;
 }
 
 .all-quotations-page > button:hover {
-    background-color: #059669;
+    background-color: #0A1128;
+    color: #FEFCFB;
 }

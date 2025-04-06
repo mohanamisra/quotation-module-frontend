@@ -38,23 +38,24 @@ const AddQuote = () => {
                 <label>
                     What system of currency does client follow?
                     <DropdownMenu.Root>
-                        <DropdownMenu.Trigger>
+                        <DropdownMenu.Trigger className="radix-dropdown-trigger">
                             {currency} <span>⌄</span>
                         </DropdownMenu.Trigger>
-                        <DropdownMenu.Content>
+                        <DropdownMenu.Content className="radix-dropdown-content">
                             <DropdownMenu.Item
+                                className="radix-dropdown-item"
                                 onSelect={() => setCurrency('INR')}
                             >
                                 INR
                             </DropdownMenu.Item>
                             <DropdownMenu.Item
+                                className="radix-dropdown-item"
                                 onSelect={() => setCurrency('USD')}
                             >
                                 USD
                             </DropdownMenu.Item>
                         </DropdownMenu.Content>
-                    </DropdownMenu.Root>
-                </label>
+                    </DropdownMenu.Root>                </label>
                 <button type="submit">Add Quote</button>
             </form>
         </div>
