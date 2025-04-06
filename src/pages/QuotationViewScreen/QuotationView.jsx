@@ -71,7 +71,7 @@ const QuotationView = () => {
                         <Dialog.Overlay/>
                         <Dialog.Content aria-describedby={undefined}>
                             <Dialog.Title>Add Part</Dialog.Title>
-                            <PartForm />
+                            <PartForm quote={quote}/>
                             <Dialog.Close asChild>
                                 <button>
                                     ×

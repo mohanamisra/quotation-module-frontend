@@ -1,18 +1,66 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 
-const PartForm = () => {
+const PartForm = ({quote}) => {
+    const [partName, setPartName] = useState('');
+    const [inputVal, setInputVal] = useState('');
+    const [allQuantities, setAllQuantities] = useState([]);
+
+    const handleAddPrice = (e) => {
+        e.preventDefault();
+        setPartName(inputVal);
+        setAllQuantities(Array.from(
+            quote.parts.find(part => part.part_name === partName).prices
+        ));
+    }
+
+    // useEffect(() => {
+    //
+    // }, [partName])
+
     return (
         <form className="space-y-4">
             <div>
                 <label>Part Name</label>
-                <input type="text" className="border rounded px-2 py-1 w-full" />
+                <input type="text" value={inputVal} onChange={e => setInputVal(e.target.value)}/>
             </div>
             <div>
                 <label>MOQ</label>
-                <input type="number" className="border rounded px-2 py-1 w-full" />
+                <input type="number"/>
             </div>
-            {/* Add inputs for price tiers if needed */}
-            <button type="submit" className="bg-black text-white px-4 py-2 rounded">Save</button>
+            <div>
+                <label>Quantity</label>
+                <input type="number"/>
+                <label>Price</label>
+                <input type="number"/>
+                <button onClick={e => {handleAddPrice(e)}}>Add Price</button>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {
+                    allQuantities.length > 0 ? (
+                        allQuantities.map((qty, index) => {
+                            return(
+                                <tr key = {index}>
+                                    <td>{qty.qty}</td>
+                                    <td>{qty.unit_price}</td>
+                                </tr>
+                            )
+                        })
+                    ) : (
+                        <tr>
+                            <td>No prices added...</td>
+                        </tr>
+                    )
+                }
+                </tbody>
+            </table>
+            <button type="submit">Save</button>
         </form>
     );
 };
