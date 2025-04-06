@@ -1,0 +1,212 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f9fafb;
+    margin: 0;
+    padding: 2rem;
+    line-height: 1.6;
+    background-image: repeating-linear-gradient(
+            to right,
+            transparent,
+            transparent 59px,
+            rgba(0, 0, 0, 0.015) 60px
+    );
+}
+
+h1, h3 {
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+p {
+    color: #374151;
+    margin: 0.3rem 0;
+    font-size: 1rem;
+}
+
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-top: 1rem;
+    font-size: 0.95rem;
+    background-color: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+}
+
+thead {
+    background-color: #f1f5f9;
+}
+
+th, td {
+    padding: 0.75rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+th {
+    font-weight: 600;
+    color: #111827;
+}
+
+td {
+    color: #374151;
+}
+
+button {
+    background-color: white;
+    color: #0A1128;
+    border: 3px solid #0A1128;
+    padding: 0.6rem 1.2rem;
+    font-weight: 800;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    margin-top: 1rem;
+}
+
+button:hover {
+    background-color: #0A1128;
+    color: #FEFCFB;
+}
+
+form {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+    border-left: 4px solid #1282A2;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+label {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+    color: #111827;
+}
+
+input {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 0.95rem;
+}
+
+input:focus {
+    border-color: #1282A2;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(18, 130, 162, 0.2);
+}
+
+form table {
+    margin-top: 1rem;
+    background: #f9fafb;
+    border-radius: 8px;
+}
+
+form table th,
+form table td {
+    font-size: 0.85rem;
+}
+
+form table td:first-child {
+    font-weight: 500;
+}
+
+/*RADIX UI DIALOG BOX STYLING*/
+
+.DialogOverlay {
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    inset: 0;
+    animation: overlayShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 100;
+}
+
+.DialogContent {
+    background-color: white;
+    border-radius: 6px;
+    box-shadow: 0px 10px 38px -10px rgba(22, 23, 24, 0.35), 0px 10px 20px -15px rgba(22, 23, 24, 0.2);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 70%;
+    max-width: 900px;
+    max-height: 85vh;
+    padding: 25px;
+    animation: contentShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 101;
+    overflow: auto;
+}
+
+.DialogContent button[aria-label="Close"],
+.DialogContent > button:last-child {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 32px;
+    line-height: 1;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.DialogContent button[aria-label="Close"]:hover,
+.DialogContent > button:last-child:hover {
+    background-color: #0A1128;
+}
+
+
+@keyframes overlayShow {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes contentShow {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -48%) scale(0.96);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+/*PART FORM STYLING*/
+
+.part-form {
+    display: flex;
+    justify-content: space-between;
+    min-width: 90%;
+}
+
+.part-form>.price-row {
+    display: flex;
+    align-items: center;
+}
+
+.right {
+    min-width: 50%;
+}

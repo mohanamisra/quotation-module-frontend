@@ -59,51 +59,58 @@ const PartForm = ({quote, onQuoteUpdate}) => {
         }
         await updateQuote(updatedQuote);
     }
-    
+
     return (
-        <form className="space-y-4">
-            <div>
-                <label>Part Name</label>
-                <input type="text" value={inputPartName} onChange={e => setInputPartName(e.target.value)}/>
+        <form className="part-form">
+            <div className="left">
+                <div>
+                    <label>Part Name</label>
+                    <input type="text" value={inputPartName} onChange={e => setInputPartName(e.target.value)}/>
+                </div>
+                <div>
+                    <label>MOQ</label>
+                    <input type="number" value={inputMoq} onChange={e => setInputMoq(e.target.value)}/>
+                </div>
+                <div className="price-row">
+                    <label>Quantity</label>
+                    <input type="number" value={inputQty} onChange={e => setInputQty(e.target.value)}/>
+                    <label>Price</label>
+                    <input type="number" value={inputPrice} onChange={e => setInputPrice(e.target.value)}/>
+                    <button onClick={e => {
+                        handleAddPrice(e)
+                    }}>Add Price
+                    </button>
+                </div>
+                <button onClick={e => handleAddPart(e)}>Save Part</button>
             </div>
-            <div>
-                <label>MOQ</label>
-                <input type="number" value={inputMoq} onChange={e => setInputMoq(e.target.value)}/>
-            </div>
-            <div>
-                <label>Quantity</label>
-                <input type="number" value={inputQty} onChange={e => setInputQty(e.target.value)}/>
-                <label>Price</label>
-                <input type="number" value={inputPrice} onChange={e => setInputPrice(e.target.value)}/>
-                <button onClick={e => {handleAddPrice(e)}}>Add Price</button>
-            </div>
-            <table>
+            <div className="right">
+                <table>
                 <thead>
                     <tr>
                         <th>Quantity</th>
                         <th>Price</th>
                     </tr>
-                </thead>
-                <tbody>
-                {
-                    allQuantities.length > 0 ? (
-                        allQuantities.map((qty, index) => {
-                            return(
-                                <tr key = {index}>
-                                    <td>{qty.qty}</td>
-                                    <td>{qty.unit_price}</td>
-                                </tr>
-                            )
-                        })
-                    ) : (
-                        <tr>
-                            <td>No prices added...</td>
-                        </tr>
-                    )
-                }
-                </tbody>
-            </table>
-            <button onClick={e=> handleAddPart(e)}>Save</button>
+                    </thead>
+                    <tbody>
+                    {
+                        allQuantities.length > 0 ? (
+                            allQuantities.map((qty, index) => {
+                                return (
+                                    <tr key={index}>
+                                        <td>{qty.qty}</td>
+                                        <td>{qty.unit_price}</td>
+                                    </tr>
+                                )
+                            })
+                        ) : (
+                            <tr>
+                                <td>No prices added...</td>
+                            </tr>
+                        )
+                    }
+                    </tbody>
+                </table>
+            </div>
         </form>
     );
 };

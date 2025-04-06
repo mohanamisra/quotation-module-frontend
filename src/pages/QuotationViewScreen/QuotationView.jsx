@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import * as Dialog from '@radix-ui/react-dialog';
 import PartForm from '../../components/PartForm/PartForm.jsx';
+import './QuotationView.css'
 
 const QuotationView = () => {
     const { quoteId } = useParams();
@@ -28,7 +29,7 @@ const QuotationView = () => {
     ).sort((a, b) => a - b);
 
     return (
-        <div>
+        <div className="quotation-view-container">
             <h1>View Quote</h1>
             <p><strong>Client Name:</strong> {quote.client_name}</p>
             <p><strong>Expiry Date:</strong> {quote.expiry_date}</p>
@@ -64,8 +65,8 @@ const QuotationView = () => {
                 </tbody>
             </table>
 
-            <div>
-                <Dialog.Root>
+            <div className = "dialog-box">
+                <Dialog.Root className="DialogRoot">
                     <Dialog.Trigger asChild>
                         <button>
                             Add Part
@@ -73,12 +74,12 @@ const QuotationView = () => {
                     </Dialog.Trigger>
 
                     <Dialog.Portal>
-                        <Dialog.Overlay/>
-                        <Dialog.Content aria-describedby={undefined}>
+                        <Dialog.Overlay className="DialogOverlay" />
+                        <Dialog.Content className="DialogContent" aria-describedby={undefined}>
                             <Dialog.Title>Add Part</Dialog.Title>
                             <PartForm quote={quote} onQuoteUpdate={refreshQuote} />
                             <Dialog.Close asChild>
-                                <button>
+                                <button aria-label="Close">
                                     ×
                                 </button>
                             </Dialog.Close>
