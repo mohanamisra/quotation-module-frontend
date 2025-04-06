@@ -4,13 +4,25 @@ import * as Dialog from '@radix-ui/react-dialog';
 import PartForm from '../../components/PartForm/PartForm.jsx';
 import './QuotationView.css'
 import html2pdf from "html2pdf.js";
+import refreshIcon from "../../assets/refresh.png"
 
 const QuotationView = () => {
     const { quoteId } = useParams();
     const [quote, setQuote] = useState(null);
     const [refreshTrigger, setRefreshTrigger] = useState(0);
+    const [exchangeRate, setExchangeRate] = useState(null);
+    const [displayMode, setDisplayMode] = useState('original');
 
-    const refreshQuote = () => {
+
+    const refreshQuote = async () => {
+        if (!exchangeRate) {
+            const res = await fetch('http://localhost:3000/currency/rates');
+            const data = await res.json();
+            setExchangeRate(data.rate);
+        }
+
+        setDisplayMode(prev => prev === 'original' ? 'converted' : 'original');
+
         setRefreshTrigger(prev => prev + 1);
     };
 
@@ -21,7 +33,15 @@ const QuotationView = () => {
             setQuote(data);
         };
         fetchQuote();
-    }, [quoteId, refreshTrigger]); // Add refreshTrigger to dependency array
+
+        const fetchExchangeRate = async () => {
+            const res = await fetch('http://localhost:3000/currency/rates');
+            const data = await res.json();
+            setExchangeRate(data.rate);
+        };
+        fetchExchangeRate();
+
+    }, [quoteId, refreshTrigger]);
 
     if (!quote) return <p>Loading...</p>;
 
@@ -37,12 +57,37 @@ const QuotationView = () => {
         });
     }
 
+    const isOriginalCurrency = displayMode === 'original';
+    const originalCurrency = quote.currency.toLowerCase();
+    const alternateCurrency = originalCurrency === 'inr' ? 'usd' : 'inr';
+    const displayCurrency = isOriginalCurrency ? originalCurrency : alternateCurrency;
+
+    const getCurrencySymbol = (currency) => {
+        return currency.toLowerCase() === 'inr' ? '₹' : '$';
+    };
+
+    const convertPrice = (price) => {
+        if (!exchangeRate || price <= 0) return price;
+
+        if (isOriginalCurrency) return price;
+
+        if (originalCurrency === 'inr') {
+            return (price / parseFloat(exchangeRate)).toFixed(2);
+        } else {
+            return (price * parseFloat(exchangeRate)).toFixed(2);
+        }
+    };
+
     return (
-        <div className="quotation-view-container" id = "quotation">
+        <div className="quotation-view-container" id="quotation">
             <h1>Quotation Details</h1>
             <p><strong>Client Name:</strong> {quote.client_name}</p>
             <p><strong>Expiry Date:</strong> {quote.expiry_date}</p>
-            <p><strong>Currency:</strong> {quote.currency.toUpperCase()}</p>
+            <p className="currency-row"><strong>Currency:</strong> {displayCurrency.toUpperCase()}
+                <button className="refresh-button" onClick={refreshQuote} data-html2canvas-ignore>
+                    <img src={refreshIcon} alt="refresh icon" width={"16px"}/>
+                </button>
+            </p>
 
             <h2>Part Details (as per RFQ)</h2>
             <table border="1" cellPadding="10">
@@ -62,10 +107,13 @@ const QuotationView = () => {
                         <td>{part.moq}</td>
                         {allQuantities.map(qty => {
                             const priceObj = part.prices.find(p => p.qty === qty);
-                            const unitPrice = priceObj?.unit_price || 0;
+                            let unitPrice = priceObj?.unit_price || 0;
+                            const displayPrice = convertPrice(unitPrice);
+                            const symbol = getCurrencySymbol(displayCurrency);
+
                             return (
                                 <td key={qty}>
-                                    {unitPrice > 0 ? `₹ ${unitPrice}` : '-'}
+                                    {unitPrice > 0 ? `${symbol} ${displayPrice}` : '-'}
                                 </td>
                             );
                         })}
@@ -86,7 +134,7 @@ const QuotationView = () => {
                             <Dialog.Overlay className="DialogOverlay"/>
                             <Dialog.Content className="DialogContent" aria-describedby={undefined}>
                                 <Dialog.Title>Add Part</Dialog.Title>
-                                <PartForm quote={quote} onQuoteUpdate={refreshQuote}/>
+                                <PartForm quote={quote} onQuoteUpdate={() => setRefreshTrigger(prev => prev + 1)}/>
                                 <Dialog.Close asChild>
                                     <button aria-label="Close">
                                         ×
