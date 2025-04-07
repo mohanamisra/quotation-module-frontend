@@ -19,7 +19,6 @@ const PartForm = ({quote, onQuoteUpdate}) => {
             "qty": Number(inputQty),
             "unit_price": Number(inputPrice),
         }
-        console.log(newQuantityObj);
 
         setAllQuantities([
             ...allQuantities,
