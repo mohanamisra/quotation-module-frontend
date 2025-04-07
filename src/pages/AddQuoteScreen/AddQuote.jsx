@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useNavigate} from 'react';
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import './AddQuote.css'
 
@@ -6,6 +6,7 @@ import './AddQuote.css'
 // MODIFY IF REQUIRED
 
 const AddQuote = () => {
+    const navigate = useNavigate();
     const [client, setClient] = useState('');
     const [expiry, setExpiry] = useState('');
     const [currency, setCurrency] = useState('INR');
@@ -25,13 +26,18 @@ const AddQuote = () => {
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(data),
         });
+        setClient('');
+        setExpiry('');
         alert("Quote Added!");
+        setTimeout(()=> {
+            navigate(-1);
+        }, 3000);
     }
 
     return (
         <div>
             <h1>Add Quote</h1>
-            <form className="add-quote-form" onSubmit={handleSubmit}>
+            <form className="add-quote-form">
                 <label>
                     Who is your client? <input required placeholder="John Doe" type="text" value={client} onChange={e => setClient(e.target.value)}/>
                 </label>
@@ -60,7 +66,7 @@ const AddQuote = () => {
                         <DropdownMenu.Item onSelect={() => setCurrency("USD")}>USD $</DropdownMenu.Item>
                     </DropdownMenu.Content>
                 </DropdownMenu.Root>
-                <button type="submit">Add Quote</button>
+                <button onClick={handleSubmit}>Add Quote</button>
             </form>
         </div>
     );
