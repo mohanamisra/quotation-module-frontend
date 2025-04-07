@@ -78,9 +78,9 @@ const PartForm = ({quote, onQuoteUpdate}) => {
                 </div>
                 <div className="price-row">
                     <label>Quantity</label>
-                    <input required type="number" value={inputQty} onChange={e => setInputQty(e.target.value)}/>
+                    <input type="number" value={inputQty} onChange={e => setInputQty(e.target.value)}/>
                     <label>Price</label>
-                    <input required type="number" value={inputPrice} onChange={e => setInputPrice(e.target.value)}/>
+                    <input type="number" value={inputPrice} onChange={e => setInputPrice(e.target.value)}/>
                     <button type="button" onClick={handleAddPrice}>Add Price</button>
                 </div>
                 <button type="submit">Save Part</button>
