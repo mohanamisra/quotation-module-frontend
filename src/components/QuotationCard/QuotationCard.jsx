@@ -17,9 +17,14 @@ const QuotationCard = ({quotation}) => {
         <div className="quotation-card-container">
             <p>Client Name: {client_name}</p>
             <p>Status: {expired ? "Expired" : "Valid"}</p>
-            <Link to={`/quote/${_id}`}>
-                <button type = "button">View Quotation</button>
-            </Link>
+            <div className = "quotation-buttons">
+                <Link to={`/quote/${_id}`}>
+                    <button type = "button">View Quotation</button>
+                </Link>
+                <button className = "delete-quotation">
+                    Delete Quotation
+                </button>
+            </div>
         </div>
     );
 };
