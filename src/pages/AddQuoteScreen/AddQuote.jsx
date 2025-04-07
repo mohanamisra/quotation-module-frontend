@@ -2,6 +2,9 @@ import React, {useState} from 'react';
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import './AddQuote.css'
 
+// BACKEND URL EXPOSED
+// MODIFY IF REQUIRED
+
 const AddQuote = () => {
     const [client, setClient] = useState('');
     const [expiry, setExpiry] = useState('');

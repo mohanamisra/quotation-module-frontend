@@ -3,9 +3,13 @@ import {useNavigate} from 'react-router-dom';
 import './AllQuotations.css'
 import QuotationCard from '../../components/QuotationCard/QuotationCard.jsx'
 
+// CURRENTLY EXPOSED BACKEND URL
+// MODIFY IF REQUIRED
+
 const AllQuotations = () => {
     const navigate = useNavigate();
 
+    // TO ADD A NEW QUOTE
     const navigateToAddQuote = () => {
         navigate('/addquote')
     }

@@ -6,6 +6,9 @@ import './QuotationView.css'
 import html2pdf from "html2pdf.js";
 import refreshIcon from "../../assets/refresh.png"
 
+// BACKEND URL EXPOSED
+// MODIFY IF REQUIRED
+
 const QuotationView = () => {
     const { quoteId } = useParams();
     const [quote, setQuote] = useState(null);
@@ -13,6 +16,9 @@ const QuotationView = () => {
     const [exchangeRate, setExchangeRate] = useState(null);
     const [displayMode, setDisplayMode] = useState('original');
 
+    // HANDLES RE-RENDERING OF THE QUOTE IN 2 SCENARIOS
+    // 1. IF PART IS ADDED, QUOTE IS RE-RENDERED TO SHOW TABLE WITH NEW PART
+    // 2. IF CURRENCY IS CHANGED, QUOTE IS RE-RENDERED TO SHOW TABLE WITH CHANGED CURRENCY
 
     const refreshQuote = async () => {
         if (!exchangeRate) {
@@ -49,9 +55,11 @@ const QuotationView = () => {
         new Set(quote.parts.flatMap(part => part.prices.map(p => p.qty)))
     ).sort((a, b) => a - b);
 
+    // html2pdf HANDLES GENERATION OF QUOTATION PDF FOR DOWNLOAD
     const handleDownloadPDF = () => {
         const quotation = document.getElementById("quotation")
         html2pdf(quotation, {
+            // PASS PARAMETERS TO MODIFY THE GENERATED PDF. REFER html2pdf DOCS.
             margin: 10,
             filename: 'quotation.pdf',
         });
