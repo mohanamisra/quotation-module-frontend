@@ -15,5 +15,5 @@
 - [X] Implement templating engine to download quotation
 - [X] Implement 3rd party api connection to convert currencies
 - [X] Deploy frontend
-- [ ] Code clean-up + documentation
+- [X] Code clean-up + documentation
 - [ ] README documentation for users
