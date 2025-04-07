@@ -66,30 +66,27 @@ const PartForm = ({quote, onQuoteUpdate}) => {
     }
 
     return (
-        <form className="part-form">
+        <form className="part-form" onSubmit={handleAddPart}>
             <div className="left">
                 <div>
                     <label>Part Name</label>
-                    <input type="text" value={inputPartName} onChange={e => setInputPartName(e.target.value)}/>
+                    <input required type="text" value={inputPartName} onChange={e => setInputPartName(e.target.value)}/>
                 </div>
                 <div>
                     <label>MOQ</label>
-                    <input type="number" value={inputMoq} onChange={e => setInputMoq(e.target.value)}/>
+                    <input required type="number" value={inputMoq} onChange={e => setInputMoq(e.target.value)}/>
                 </div>
                 <div className="price-row">
                     <label>Quantity</label>
-                    <input type="number" value={inputQty} onChange={e => setInputQty(e.target.value)}/>
+                    <input required type="number" value={inputQty} onChange={e => setInputQty(e.target.value)}/>
                     <label>Price</label>
-                    <input type="number" value={inputPrice} onChange={e => setInputPrice(e.target.value)}/>
-                    <button onClick={e => {
-                        handleAddPrice(e)
-                    }}>Add Price
-                    </button>
+                    <input required type="number" value={inputPrice} onChange={e => setInputPrice(e.target.value)}/>
+                    <button type="button" onClick={handleAddPrice}>Add Price</button>
                 </div>
-                <button onClick={e => handleAddPart(e)}>Save Part</button>
+                <button type="submit">Save Part</button>
             </div>
             <div className="right">
-                <table>
+            <table>
                 <thead>
                     <tr>
                         <th>Quantity</th>
