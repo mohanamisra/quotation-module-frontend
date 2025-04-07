@@ -1,4 +1,7 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
+
+// BACKEND URL EXPOSED
+// MODIFY IF REQUIRED
 
 const PartForm = ({quote, onQuoteUpdate}) => {
     const [allQuantities, setAllQuantities] = useState([]);
@@ -27,6 +30,7 @@ const PartForm = ({quote, onQuoteUpdate}) => {
         setInputPrice('');
     }
 
+    // RE-RENDERS QUOTE IN THE PARENT COMPONENT (QuotationView COMPONENT)
     const updateQuote = async (newQuoteObj) => {
         const url = `https://quotation-module-backend.onrender.com/quotations/${quote._id}`;
         await fetch(url, {
@@ -34,7 +38,7 @@ const PartForm = ({quote, onQuoteUpdate}) => {
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(newQuoteObj),
         });
-        alert("Part Added");
+        alert("New Part Added");
         if (onQuoteUpdate) {
             onQuoteUpdate();
         }
@@ -51,6 +55,8 @@ const PartForm = ({quote, onQuoteUpdate}) => {
             "prices": allQuantities
         }
 
+        // REMOVING _id FIELD FROM CURRENT QUOTE BEFORE CREATING UPDATED QUOTE OBJECT
+        // ELSE ERROR WHEN PATCHING IN MONGODB. _id FIELD SHOULD NOT BE PASSED IN PATCH REQUESTS TO MONGODB AS IT IS UNIQUELY SYSTEM-GENERATED.
         const {_id, currQuote} = quote;
 
         const updatedQuote = {

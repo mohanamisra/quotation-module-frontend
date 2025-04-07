@@ -1,8 +1,7 @@
 import React, {useState, useEffect} from 'react';
-import {useNavigate, Link} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 const QuotationCard = ({quotation}) => {
-    const navigate = useNavigate();
     const {_id, client_name, expiry_date} = quotation;
     const [expired, setExpired] = useState(false);
 
@@ -17,7 +16,7 @@ const QuotationCard = ({quotation}) => {
     return (
         <div className="quotation-card-container">
             <p>Client Name: {client_name}</p>
-            <p>Expired: {expired ? "Expired" : "Valid"}</p>
+            <p>Status: {expired ? "Expired" : "Valid"}</p>
             <Link to={`/quote/${_id}`}>
                 <button type = "button">View Quotation</button>
             </Link>
