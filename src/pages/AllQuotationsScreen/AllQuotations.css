@@ -54,20 +54,36 @@ body {
     color: #FEFCFB;
 }
 
+.quotation-buttons {
+    display: flex;
+    justify-content: space-between;
+    padding-right: 1rem;
+}
+
 .quotation-card-container button {
-    background-color: #1282A2;
     color: white;
-    padding: 0.6rem 1.2rem;
+    padding: 0.6rem 1rem;
     border: none;
-    font-size: 0.95rem;
+    font-size: 0.85rem;
     cursor: pointer;
     margin-top: 1rem;
     align-self: flex-start;
     transition: background-color 0.2s ease;
 }
 
-.quotation-card-container button:hover {
+.quotation-card-container .view-quotation {
+    background-color: #1282A2;
+}
+
+.quotation-card-container .view-quotation:hover {
     background-color: #034078;
+}
+.quotation-card-container .delete-quotation {
+    background-color: #c1121f;
+}
+
+.quotation-card-container .delete-quotation:hover {
+    background-color: #930f19;
 }
 
 .all-quotations-page > button {

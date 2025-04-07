@@ -19,7 +19,7 @@ const QuotationCard = ({quotation}) => {
             <p>Status: {expired ? "Expired" : "Valid"}</p>
             <div className = "quotation-buttons">
                 <Link to={`/quote/${_id}`}>
-                    <button type = "button">View Quotation</button>
+                    <button className = "view-quotation" type = "button">View Quotation</button>
                 </Link>
                 <button className = "delete-quotation">
                     Delete Quotation
