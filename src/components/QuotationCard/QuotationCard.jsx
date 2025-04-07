@@ -5,6 +5,15 @@ const QuotationCard = ({quotation}) => {
     const {_id, client_name, expiry_date} = quotation;
     const [expired, setExpired] = useState(false);
 
+    const handleDeleteQuotation = async () => {
+        fetch(`https://quotation-module-backend.onrender.com/quotations/${quotation._id}`, {
+            method:"DELETE"
+        })
+            .then((res) => {
+                window.location.reload();
+            })
+    }
+
     useEffect(() => {
         const expiryParts = expiry_date.split('/');
         const expiry = new Date(`${expiryParts[2]}-${expiryParts[1]}-${expiryParts[0]}`);
@@ -21,7 +30,7 @@ const QuotationCard = ({quotation}) => {
                 <Link to={`/quote/${_id}`}>
                     <button className = "view-quotation" type = "button">View Quotation</button>
                 </Link>
-                <button className = "delete-quotation">
+                <button onClick = {handleDeleteQuotation} className = "delete-quotation">
                     Delete Quotation
                 </button>
             </div>
