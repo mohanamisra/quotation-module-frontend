@@ -24,13 +24,7 @@ const AddQuote = () => {
         }
 
         try {
-            // const response = await fetch('http://localhost:3000/quotations', {
-            //     method: 'POST',
-            //     headers: {'Content-Type': 'application/json'},
-            //     body: JSON.stringify(data),
-            // })
-            // console.log(response.json())
-            await fetch('http://localhost:3000/quotations', {
+            await fetch('https://quotation-module-backend.onrender.com/quotations', {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify(data),
@@ -38,7 +32,6 @@ const AddQuote = () => {
                 .then(res => res.json())
                 .then((newId) => {
                     navigate(`/quote/${newId}`);
-                    // console.log(newId);
                 })
         }
         catch(e) {
