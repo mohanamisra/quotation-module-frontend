@@ -22,17 +22,34 @@ const AddQuote = () => {
             currency: currency.toLowerCase(),
             parts:[]
         }
-        await fetch('https://quotation-module-backend.onrender.com/quotations', {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(data),
-        });
+
+        try {
+            // const response = await fetch('http://localhost:3000/quotations', {
+            //     method: 'POST',
+            //     headers: {'Content-Type': 'application/json'},
+            //     body: JSON.stringify(data),
+            // })
+            // console.log(response.json())
+            await fetch('http://localhost:3000/quotations', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(data),
+            })
+                .then(res => res.json())
+                .then((newId) => {
+                    navigate(`/quote/${newId}`);
+                    // console.log(newId);
+                })
+        }
+        catch(e) {
+            console.log(e);
+        }
         setClient('');
         setExpiry('');
         alert("Quote Added!");
-        setTimeout(()=> {
-            navigate(-1);
-        }, 3000);
+        // setTimeout(()=> {
+        //     navigate(-1);
+        // }, 3000);
     }
 
     return (
